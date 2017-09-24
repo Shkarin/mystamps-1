@@ -39,7 +39,11 @@ public class SuggestionController {
 	@ResponseBody
 	@GetMapping(Url.SUGGEST_SERIES_COUNTRY)
 	public String suggestCountryForUser(@CurrentUser Integer currentUserId) {
-		return countryService.suggestCountryForUser(currentUserId);
+		
+		String slug = countryService.suggestCountryForUser(currentUserId);
+		if (slug == null)
+			return "";
+		return slug;
 	}
 
 }
